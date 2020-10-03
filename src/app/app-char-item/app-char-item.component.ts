@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Char } from '../char.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { Char } from '../char.interface';
   templateUrl: './app-char-item.component.html',
   styleUrls: ['./app-char-item.component.css']
 })
-export class AppCharItemComponent implements OnInit, OnChanges {
+export class AppCharItemComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() letter: Char;
   @Output() letterClicked: EventEmitter<string> = new EventEmitter<string>();
@@ -20,6 +20,10 @@ export class AppCharItemComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void{
     console.log('Input changed.');
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destroyed.');
   }
 
 }

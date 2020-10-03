@@ -5,8 +5,16 @@
 </div>
 <app-footer></app-footer>
 
-<button (click)="changeLetter()">Change letter</button>
-<app-app-char-item [letter]="char" (letterClicked)="onLetterClicked($event)" (mouseOver)="onMouseOver($event)" ></app-app-char-item>
+<button (click)="toggleComponentVisibility()">Toggle component</button>
+
+<div *ngIf="shouldComponentExist">
+    <app-app-char-item
+        *ngFor="let letter of letters"
+        [letter]="letter"
+        (letterClicked)="onLetterClicked($event)"
+        (mouseOver)="onMouseOver($event)" >
+    </app-app-char-item>
+</div>
 
 
 
