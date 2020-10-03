@@ -7,13 +7,25 @@
 
 <button (click)="toggleComponentVisibility()">Toggle component</button>
 
+<button
+*ngFor="let letter of letters"
+class="button"
+[ngClass]="getClasses(letter.letter)"
+(click)="chooseLetter(letter.letter)">
+    Wybierz {{ letter.letter }}
+</button>
+
 <div *ngIf="shouldComponentExist">
-    <app-app-char-item
-        *ngFor="let letter of letters"
-        [letter]="letter"
-        (letterClicked)="onLetterClicked($event)"
-        (mouseOver)="onMouseOver($event)" >
-    </app-app-char-item>
+    <div [ngSwitch]="chosenLetter">
+        <ng-container *ngFor="let letter of letters">
+            <app-app-char-item
+            *ngSwitchCase="letter.letter"
+            [letter]="letter"
+            (letterClicked)="onLetterClicked($event)"
+            (mouseOver)="onMouseOver($event)" >
+            </app-app-char-item>
+        </ng-container>
+    </div>  
 </div>
 
 

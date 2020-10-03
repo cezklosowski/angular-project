@@ -23,6 +23,11 @@ export class AppComponent {
   ];
 
   public shouldComponentExist = true;
+  public chosenLetter = '';
+
+  public getClasses(letter: string): { 'clicked-button': boolean } {
+    return {'clicked-button': this.chosenLetter === letter};
+  }
 
   public onLetterClicked(letter: string): void {
     console.log('Kliknięto: ', letter);
@@ -41,5 +46,9 @@ export class AppComponent {
 
   public toggleComponentVisibility(): void {
     this.shouldComponentExist = !this.shouldComponentExist;
+  }
+
+  public chooseLetter(letter: string): void {
+    this.chosenLetter = letter;
   }
 }
